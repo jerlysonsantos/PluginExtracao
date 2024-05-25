@@ -1,16 +1,16 @@
-import { ExtractionUseCase } from "../useCases/extraction-usecase";
+import { ExtractionUseCase } from '../useCases/extraction-usecase';
 
 export class ExtractionButton extends HTMLElement {
   public extractionUseCase: ExtractionUseCase = new ExtractionUseCase();
 
   constructor() {
     super();
-    this.attachShadow({ mode: "open" });
+    this.attachShadow({ mode: 'open' });
     this.render();
   }
 
   styleCustom() {
-    const style = document.createElement("style");
+    const style = document.createElement('style');
     style.textContent = `
       button {
         position: fixed;
@@ -31,11 +31,11 @@ export class ExtractionButton extends HTMLElement {
       return;
     }
 
-    const button = document.createElement("button");
-    button.textContent = "Extrair";
-    button.id = "extract-button";
-    button.addEventListener("click", async () => {
-      await this.extractionUseCase.extract();
+    const button = document.createElement('button');
+    button.textContent = 'Extrair';
+    button.id = 'extract-button';
+    button.addEventListener('click', async () => {
+      await this.extractionUseCase.collect();
     });
 
     this.shadowRoot.append(this.styleCustom(), button);

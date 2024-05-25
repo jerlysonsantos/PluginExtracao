@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": false,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "sourceMap": false,
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "lib": ["es2017", "dom"],
+    "esModuleInterop": true,
+    "paths": {
+      "@injection-dependency": ["src/lib/dependency-injection"],
+      "@jest-providers": ["src/lib/jest-providers/jest-providers.lib.ts"],
+      "@repository": ["src/lib/repository"],
+      "@routers": ["src/lib/routers"],
+      "src/*": ["src/*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}
