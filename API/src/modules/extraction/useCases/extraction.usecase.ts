@@ -5,11 +5,12 @@ import { v4 as uuidv4 } from 'uuid';
 import { ExtractionDto } from '../domain/dto/extraction.dto';
 import { Extraction } from '../domain/entities/extraction.entity';
 import { ExtractionRepository } from '../domain/respositories/extraction.repository';
+import { ExtractionUseCaseInterface } from '../interfaces/extraction.usecase.interface';
 
 export { ExtractionUseCase };
 
 @Injectable('extractionUseCase')
-class ExtractionUseCase {
+class ExtractionUseCase implements ExtractionUseCaseInterface {
   @Inject('extractionRepository')
   private extractionRepository: ExtractionRepository;
 
@@ -24,12 +25,23 @@ class ExtractionUseCase {
       extraction.os = this.getOs(userAgent);
       extraction.origin = req.headers.origin || req.headers.referer || req.headers.host;
       extraction.themeChangeCount = extractionDto.themeChangeCount;
+      extraction.token = req.headers.authorization;
 
-      this.extractionRepository.collect(extraction);
+      await this.extractionRepository.collect(extraction);
 
-      return res.json({ message: 'Extraction data' });
+      return res.status(200).json({ message: 'Dados coletados com sucesso' });
     } catch (error) {
-      return res.status(500).json({ message: error.message });
+      return res.status(400).json({ error });
+    }
+  }
+
+  public async list(token: string, res: Response) {
+    try {
+      const extractions = await this.extractionRepository.list(token);
+
+      return res.json(extractions);
+    } catch (error) {
+      return res.status(400).json({ error });
     }
   }
 

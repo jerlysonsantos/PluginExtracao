@@ -2,6 +2,9 @@ import express, { Handler } from 'express';
 import { IRouter } from '@routers';
 import { MetadataKeys } from './lib/routers/utils/metadata.keys';
 
+import swaggerUi from 'swagger-ui-express';
+import swaggerJSDoc from 'swagger-jsdoc';
+
 class App {
   public app: express.Application;
   public port: number;
@@ -12,6 +15,7 @@ class App {
 
     this.middlewares(appInit.middleWares);
     this.routes(appInit.controllers);
+    this.swagger();
   }
 
   private middlewares(middleWares: any[]) {
@@ -44,6 +48,29 @@ class App {
     } catch (error) {
       console.error(error.message);
     }
+  }
+
+  private swagger() {
+    const options = {
+      definition: {
+        openapi: '3.1.0',
+        info: {
+          title: 'Handtalk API',
+          version: '1.0.0',
+          description: 'API para extração de dados',
+        },
+        servers: [
+          {
+            url: 'http://localhost:3000',
+          },
+        ],
+      },
+      apis: ['./src/**/*.ts'],
+    };
+
+    const specs = swaggerJSDoc(options);
+
+    this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
   }
 
   public listen() {

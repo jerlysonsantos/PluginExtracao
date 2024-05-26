@@ -1,6 +1,4 @@
-require('dotenv').config();
-
-export const pgConfig = {
+module.exports = {
   user: process.env.DATABASE_USERNAME,
   password: process.env.DATABASE_PASSWORD,
   host: process.env.DATABASE_HOST,

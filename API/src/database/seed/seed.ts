@@ -1,7 +1,9 @@
+require('dotenv').config();
+
 import { readFileSync } from 'fs';
 import { Client } from 'pg';
 
-const seedQuery = readFileSync('src/database/seed/users.sql', {
+const seedQuery = readFileSync('src/database/seed/authentication_token.sql', {
   encoding: 'utf-8',
 });
 
@@ -9,7 +11,7 @@ const connection = new Client({
   user: process.env.DATABASE_USERNAME,
   password: process.env.DATABASE_PASSWORD,
   host: process.env.DATABASE_HOST,
-  port: Number(process.env.DATABASE_PORT || 3306),
+  port: Number(process.env.DATABASE_PORT || 5432),
   database: process.env.DATABASE_NAME,
 });
 

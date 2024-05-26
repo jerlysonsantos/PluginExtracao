@@ -6,18 +6,22 @@ export { PostgresConnection };
 class PostgresConnection {
   private static _instance: PostgresConnection;
 
+  private _connection: Client;
+
   constructor() {
-    const connection = new Client({
+    this._connection = new Client({
       ...pgConfig,
     });
 
     try {
-      connection.connect();
+      this._connection.connect();
     } catch (error) {
       console.error(error.message);
     }
+  }
 
-    return connection;
+  get connection() {
+    return this._connection;
   }
 
   static getInstance() {

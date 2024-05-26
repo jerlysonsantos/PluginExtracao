@@ -1,0 +1,2 @@
+INSERT INTO authentication_token (token, origin) VALUES ('707d97a0-8428-4299-977b-1d913de9064c', 'localhost:5174');
+INSERT INTO authentication_token (token, origin) VALUES ('18ae00d0-1594-4b13-bd70-4ca2af8f439d', 'localhost:3000');

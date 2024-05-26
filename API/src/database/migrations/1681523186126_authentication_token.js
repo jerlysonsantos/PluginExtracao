@@ -1,8 +1,11 @@
 /* eslint-disable camelcase */
+const { PgLiteral } = require('node-pg-migrate');
 
 exports.shorthands = undefined;
 
 exports.up = (pgm) => {
+  pgm.sql('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
+
   pgm.createTable('authentication_token', {
     id: 'id',
     token: {
@@ -11,7 +14,6 @@ exports.up = (pgm) => {
       notNull: true,
     },
     origin: { type: 'varchar(25)', notNull: true },
-    attempts: { type: 'integer', notNull: true, default: 0 },
     created_at: {
       type: 'timestamp',
       notNull: true,
@@ -26,5 +28,5 @@ exports.up = (pgm) => {
 };
 
 exports.down = (pgm) => {
-  pgm.dropTable('users');
+  pgm.dropTable('authentication_token');
 };

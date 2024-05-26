@@ -1,5 +1,5 @@
 import { FirebaseRepository } from '@repository';
-import { ExtractionRepositoryInterface } from './extraction.interface';
+import { ExtractionRepositoryInterface } from '../../interfaces/extraction.interface';
 import { Extraction } from '../entities/extraction.entity';
 import { Injectable } from '@injection-dependency';
 
@@ -7,28 +7,39 @@ export { ExtractionRepository };
 
 @Injectable('extractionRepository')
 class ExtractionRepository extends FirebaseRepository implements ExtractionRepositoryInterface {
-  public async collect(extraction: Extraction): Promise<void> {
-    this.connection.ref('extraction').push(extraction, (error) => {
-      if (error) {
-        throw Error('Data could not be saved.' + error);
-      } else {
-        return extraction;
-      }
+  public async collect(extraction: Extraction): Promise<Extraction> {
+    return new Promise((resolve, reject) => {
+      this.connection.ref('extraction').push(extraction, (error) => {
+        if (error) {
+          return reject('Dados não salvos.' + error);
+        }
+
+        resolve(extraction);
+      });
     });
   }
 
-  public async list(): Promise<Extraction[]> {
-    return new Promise((resolve) => {
-      this.connection.ref('extraction').once('value', (snapshot) => {
-        const data = snapshot.val();
-        const extractions: Extraction[] = [];
-        for (const key in data) {
-          if (data.hasOwnProperty(key)) {
-            extractions.push(data[key]);
+  public async list(token: string): Promise<Extraction[]> {
+    return new Promise((resolve, reject) => {
+      this.connection
+        .ref('extraction')
+        .orderByChild('token')
+        .equalTo(token)
+        .limitToLast(20)
+        .once('value', (snapshot) => {
+          const data = snapshot.val();
+          const extractions: Extraction[] = [];
+
+          for (const key in data) {
+            if (data.hasOwnProperty(key)) {
+              extractions.push(data[key]);
+            }
           }
-        }
-        resolve(extractions);
-      });
+
+          if (extractions.length === 0) return reject('Dados não encontrados');
+
+          resolve(extractions);
+        });
     });
   }
 }
