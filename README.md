@@ -1,37 +1,43 @@
 # Plugin de extração de dados
 
-> Essa aplicação serve para extrair dados de um usuario via plugin e subir em um banco firebase
+Essa aplicação serve para extrair dados de um usuario via plugin e subir em um banco firebase
 
 ## Considerações gerais
 
-> Essa aplicação estar montada em um monorepo, logo cada pasta precisa que seja rodado o comando `yarn` ou `npm i`
+Esse projeto é um monorepo. Portanto, em cada pasta, é necessário executar o comando yarn ou npm i.
 
-> Todas as frentes possuem testes unitários que podem ser rodados com o comando `yarn test` ou `npm run test`
+Todas as frentes possuem testes unitários que podem ser executados com o comando `yarn test` ou `npm run test`.
 
-> A API precisa de um arquivo `.env`, o exemplo estar na pasta
+A API precisa de um arquivo .env. O exemplo está no diretório `API/`. Execute o seguinte comando dentro do diretório da API caso esteja no Linux:
+```bash
+cp .env_example .env
+```
 
-## Banco Postgres
+## Banco de dados
 
-> Há um banco postgres para gerenciamento de tokens e limite de chamada, com o comando `docker-compose up`
+Há um banco Postgres para gerenciamento de tokens e limite de chamada. Execute-o com o comando:
+```bash
+docker-compose up
+```
 
 ## API
 
-> Para iniciar a API precisa rodar o comando `yarn start` ou `npm start`
+Para iniciar a API é necessário executar o comando `yarn start` ou `npm start`
 
-> Ela também possue migrações e seeds usando `yarn migrate up && yarn seed` ou `npm run migrate up && npm run seed`
+Ela também possue migrações e seeds usando `yarn migrate up && yarn seed` ou `npm run migrate up && npm run seed`
 
-> Para utilizar a documentação da API utilize a URL `http://localhost:3000/api-docs`
+Para utilizar a documentação da API utilize a URL `http://localhost:3000/api-docs`
 
-> Para o firebase funcionar, é necessário adicionar um arquivo `serviceAccountKey.json` em `API/src/config`
+Para o firebase funcionar, é necessário adicionar um arquivo `serviceAccountKey.json` em `API/src/config`
 
 ## Plugin
 
-> Para iniciar o plugin presica rodar o comando `yarn dev` ou `npm run dev`
+Para iniciar o plugin presica rodar o comando `yarn dev` ou `npm run dev`
 
-> Recomendo que rode-o primeiro
+Recomendo que rode-o primeiro
 
-## Page
+## Frontend
 
-> Para iniciar o react presica rodar o comando `yarn dev` ou `npm run dev`
+Para iniciar o React, execute o comando `yarn dev` ou `npm run dev`
 
-> Para que o plugin consiga extrair todos os dados, é necessário consentir com os cookies
+Para que o plugin consiga extrair todos os dados, é necessário consentir com os cookies
