@@ -1,5 +1,5 @@
 import { Cookie } from '../../../utils/cookie.util';
-import { ExtractionDomain } from '../domain/extraction.domain';
+import { ExtractionDto } from '../domain/dto/extraction.dto';
 import { ExtractionService } from '../services/extraction-service';
 
 export class ExtractionUseCase {
@@ -7,13 +7,13 @@ export class ExtractionUseCase {
 
   async collect() {
     try {
-      const extractionData = new ExtractionDomain();
+      const extractionData = new ExtractionDto();
 
       extractionData.themeChangeCount = Number(Cookie.getCookie('themeChangeCount'));
 
       await this.extractionService.collect(extractionData);
     } catch (error) {
-      console.error('Error extracting data', error);
+      throw new Error(String(error));
     }
   }
 }

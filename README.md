@@ -17,3 +17,11 @@
 ## Page
 
 > para iniciar o react presica rodar o comando `yarn dev` ou `npm run dev`
+
+## Plugin
+
+> para iniciar o plugin presica rodar o comando `yarn dev` ou `npm run dev`
+
+## Banco Postgres
+
+> Há um banco postgres para gerenciamento de tokens e limit de seção, com o comando `docker-compose up`

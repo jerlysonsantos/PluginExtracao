@@ -14,6 +14,8 @@ exports.up = (pgm) => {
       notNull: true,
     },
     origin: { type: 'varchar(25)', notNull: true },
+    limit: { type: 'int', notNull: true, default: 0 },
+    limit_timeout: { type: 'timestamp', notNull: false },
     created_at: {
       type: 'timestamp',
       notNull: true,

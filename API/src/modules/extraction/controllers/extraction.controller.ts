@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { rateLimit } from 'express-rate-limit';
+import { Limiter } from 'src/helpers/limiter.helper';
 
 import { Controller, Get, Post } from '@routers';
 import { Inject } from '@injection-dependency';
@@ -10,13 +10,6 @@ import { ExtractionUseCase } from '../useCases/extraction.usecase';
 import { ExtractionDto } from '../domain/dto/extraction.dto';
 
 export { ExtractionController };
-
-const limiter = rateLimit({
-  windowMs: 10 * 60 * 1000,
-  limit: 5,
-  standardHeaders: 'draft-7',
-  legacyHeaders: false,
-});
 
 @Controller('/extraction')
 class ExtractionController {
@@ -42,6 +35,11 @@ class ExtractionController {
    *                $ref: '#/components/schemas/ExtractionList'
    */
   @Get('/list')
+  public async list(req: Request, res: Response) {
+    const token = req.query.token as string;
+
+    return await this.extractionUseCase.list(token, res);
+  }
 
   /**
    * @swagger
@@ -73,7 +71,7 @@ class ExtractionController {
    *                message:
    *                  type: string
    */
-  @Post('/collect', Authenticate, limiter, ValidateBody(ExtractionDto))
+  @Post('/collect', Authenticate, Limiter, ValidateBody(ExtractionDto))
   public async collect(req: Request, res: Response) {
     const extractionDto = new ExtractionDto();
 

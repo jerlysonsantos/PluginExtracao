@@ -38,4 +38,8 @@ class Extraction {
   origin?: string;
   themeChangeCount?: number;
   token?: string;
+
+  set setToken(token: string) {
+    this.token = token && token.split(' ')[1];
+  }
 }

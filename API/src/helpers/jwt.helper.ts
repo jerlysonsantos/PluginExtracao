@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { AuthTokenRepository } from 'src/modules/extraction/domain/respositories/authentication-token.repository';
+import { AuthTokenRepository } from 'src/modules/tokens/domain/repositories/authentication-token.repository';
 
 export const Authenticate = (req: Request, res: Response, next: NextFunction) => {
   const authorization = req.headers['authorization'];
