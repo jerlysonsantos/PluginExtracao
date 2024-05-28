@@ -14,7 +14,8 @@ export class ExtractionButton extends HTMLElement {
     style.textContent = `
       button {
         position: fixed;
-        right: 0;
+        top: 30%;
+        right: .5rem;
         background-color: blue;
         color: white;
         padding: 10px 20px;
