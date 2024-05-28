@@ -1,0 +1,21 @@
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#project {
+  padding: 50px 0;
+}
+
+#project-content {
+  margin: 1rem;
+  width: 100%;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+#project-seeall {
+  margin-top: 1rem;
+}

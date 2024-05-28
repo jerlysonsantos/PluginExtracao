@@ -1,0 +1,22 @@
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#aboutme {
+  padding: 50px 0;
+}
+
+#aboutme-content {
+  margin: 1rem;
+  width: 100%;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+#about-skills-list ul,
+li {
+  list-style-type: none;
+}

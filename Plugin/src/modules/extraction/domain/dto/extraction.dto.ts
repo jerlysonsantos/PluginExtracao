@@ -1,3 +1,3 @@
-export class ExtractionDomain {
+export class ExtractionDto {
   public themeChangeCount!: number;
 }

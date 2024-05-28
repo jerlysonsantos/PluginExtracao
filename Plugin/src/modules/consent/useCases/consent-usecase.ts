@@ -6,7 +6,7 @@ export class ConsentUseCase {
       const expires = `expires=${date.toUTCString()}`;
       document.cookie = `consent=true;${expires};path=/`;
     } catch (error) {
-      console.error("Error accepting consent", error);
+      console.error('Error accepting consent', error);
     }
   }
 }

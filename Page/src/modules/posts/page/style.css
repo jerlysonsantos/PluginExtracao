@@ -1,0 +1,21 @@
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#posts {
+  padding: 50px 0;
+}
+
+#posts-content {
+  margin: 1rem;
+  width: 100%;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+#posts-list {
+  margin-bottom: 1rem;
+}

@@ -1,21 +1,19 @@
-import { Cookie } from "../../../utils/cookie.util";
-import { ExtractionDomain } from "../domain/extraction.domain";
-import { ExtractionService } from "../services/extraction-service";
+import { Cookie } from '../../../utils/cookie.util';
+import { ExtractionDto } from '../domain/dto/extraction.dto';
+import { ExtractionService } from '../services/extraction-service';
 
 export class ExtractionUseCase {
   public extractionService: ExtractionService = new ExtractionService();
 
-  async extract() {
+  async collect() {
     try {
-      const extractionData = new ExtractionDomain();
+      const extractionData = new ExtractionDto();
 
-      extractionData.themeChangeCount = Number(
-        Cookie.getCookie("themeChangeCount")
-      );
+      extractionData.themeChangeCount = Number(Cookie.getCookie('themeChangeCount'));
 
-      await this.extractionService.extract(extractionData);
+      await this.extractionService.collect(extractionData);
     } catch (error) {
-      console.error("Error extracting data", error);
+      throw new Error(String(error));
     }
   }
 }
