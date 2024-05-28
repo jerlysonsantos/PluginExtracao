@@ -6,16 +6,18 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import { useTheme } from '@mui/material';
+import { Button, useTheme } from '@mui/material';
 
 import { ThemeContext } from '../../modules/home/contexts/theme-context';
+
+import './style.css';
 
 export const AppMenu = () => {
   const colorMode = useContext(ThemeContext);
   const theme = useTheme();
 
   return (
-    <>
+    <header id="appmenu">
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
@@ -29,22 +31,25 @@ export const AppMenu = () => {
                 p: 3,
               }}
             >
-              {theme.palette.mode} mode
-              <IconButton
+              <Button
                 sx={{ ml: 1 }}
+                id="theme-button"
                 data-click-increment="themeChangeCount"
-                onClick={colorMode.toggleColorMode}
                 color="inherit"
+                role="button"
+                aria-label="Alterar o tema"
+                onClick={colorMode.toggleColorMode}
               >
+                modo {theme.palette.mode === 'dark' ? 'escuro' : 'claro'}
                 {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-              </IconButton>
+              </Button>
             </Box>
-            <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+            <IconButton size="large" edge="start" color="inherit" role="button" aria-label="Menu" sx={{ mr: 2 }}>
               <MenuIcon />
             </IconButton>
           </Toolbar>
         </AppBar>
       </Box>
-    </>
+    </header>
   );
 };

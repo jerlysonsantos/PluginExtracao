@@ -21,7 +21,7 @@ export const Project = () => {
                 <p>Descrição sobre o projeto</p>
               </div>
 
-              <Button variant="contained" color="primary">
+              <Button variant="contained" color="primary" aria-label="Botão para ver mais sobre o projeto">
                 Ver mais
               </Button>
             </article>
@@ -29,7 +29,7 @@ export const Project = () => {
         </Card>
 
         <div id="project-seeall" className="center">
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" aria-label="Botão para ver todos projetos">
             Ver todos os projetos
           </Button>
         </div>

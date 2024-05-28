@@ -32,7 +32,7 @@ export const Posts = () => {
               </div>
 
               <div className="center">
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="primary" aria-label="Botão para ver postagens">
                   Ver todas as postagens
                 </Button>
               </div>

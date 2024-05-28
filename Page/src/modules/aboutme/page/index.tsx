@@ -9,7 +9,7 @@ export const AboutMe = () => {
           <Avatar alt="Imagem do usuário" sx={{ width: 100, height: 100 }} />
           <h2>Jerlyson</h2>
         </div>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" aria-label="Botão para contato">
           Entre em contato
         </Button>
       </header>
@@ -27,7 +27,7 @@ export const AboutMe = () => {
               </p>
             </article>
             <article>
-              <h3>Habilidades</h3>
+              <h2>Habilidades</h2>
               <ul id="about-skills-list">
                 <li>
                   <h3>Ferramentas</h3>
