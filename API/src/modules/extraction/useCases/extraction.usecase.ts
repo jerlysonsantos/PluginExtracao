@@ -25,7 +25,7 @@ class ExtractionUseCase implements ExtractionUseCaseInterface {
       extraction.os = this.getOs(userAgent);
       extraction.origin = req.headers.origin || req.headers.referer || req.headers.host;
       extraction.themeChangeCount = extractionDto.themeChangeCount;
-      extraction.token = req.headers.authorization;
+      extraction.setToken = req.headers.authorization;
 
       await this.extractionRepository.collect(extraction);
 

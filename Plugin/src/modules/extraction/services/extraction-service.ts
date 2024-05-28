@@ -1,22 +1,36 @@
-import { ExtractionDomain } from '../domain/extraction.domain';
+import { ExtractionDto } from '../domain/dto/extraction.dto';
 
 export { ExtractionService };
 
 class ExtractionService {
-  async collect(extractionData: ExtractionDomain) {
-    fetch('http://localhost:3000/extraction/collect', {
-      method: 'POST',
-      headers: {
-        Authorization: '707d97a0-8428-4299-977b-1d913de9064c',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(extractionData),
-    })
-      .then((response) => {
-        console.log(response);
+  async collect(extractionData: ExtractionDto): Promise<Response | string> {
+    return new Promise((resolve, reject) => {
+      fetch('http://localhost:3000/extraction/collect', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('plugin-token') || ''}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(extractionData),
       })
-      .catch((error) => {
-        console.error(error);
-      });
+        .then((response) => {
+          if (response.status === 429) {
+            reject('Extrações maximas atingidas!');
+          }
+
+          if (response.status === 401) {
+            reject('Token inválido!');
+          }
+
+          if (response.status !== 200) {
+            reject('Erro ao extrair dados!');
+          }
+
+          resolve(response);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
   }
 }
