@@ -3,6 +3,11 @@ import { AuthTokenRepository } from 'src/modules/tokens/domain/repositories/auth
 
 export const Authenticate = (req: Request, res: Response, next: NextFunction) => {
   const authorization = req.headers['authorization'];
+
+  if (!authorization) {
+    return res.status(401).json({ error: 'Usuário não autorizado' });
+  }
+
   const [_, token] = authorization.split(' ') as [string, string];
   const authTokenRepository = new AuthTokenRepository();
 

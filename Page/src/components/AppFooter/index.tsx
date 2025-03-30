@@ -11,7 +11,7 @@ export const AppFooter = () => {
         backgroundColor: theme.palette.primary.contrastText,
       }}
     >
-      <p style={{ color: theme.palette.text.primary }}>Desafio para Hand Talk</p>
+      <p style={{ color: theme.palette.text.primary }}>Pagina de extração</p>
     </footer>
   );
 };

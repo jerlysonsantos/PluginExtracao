@@ -1,6 +1,5 @@
 import { Inject, Injectable } from '@injection-dependency';
 import { Request, Response } from 'express';
-import { v4 as uuidv4 } from 'uuid';
 
 import { ExtractionDto } from '../domain/dto/extraction.dto';
 import { Extraction } from '../domain/entities/extraction.entity';
@@ -20,7 +19,6 @@ class ExtractionUseCase implements ExtractionUseCaseInterface {
 
       const extraction = new Extraction();
 
-      extraction.id = uuidv4();
       extraction.device = this.getDevice(userAgent);
       extraction.os = this.getOs(userAgent);
       extraction.origin = req.headers.origin || req.headers.referer || req.headers.host;

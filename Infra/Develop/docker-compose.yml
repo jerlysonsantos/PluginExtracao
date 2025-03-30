@@ -1,13 +1,13 @@
 version: '3.8'
 
 services:
-  handtalk-db:
+  extracao-db:
     image: postgres:latest
     container_name: postgres_db
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: handtalk_db
+      POSTGRES_DB: extracao_db
     ports:
       - '5432:5432'
     volumes:

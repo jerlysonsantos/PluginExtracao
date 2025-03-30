@@ -28,7 +28,7 @@ Ela também possue migrações e seeds usando `yarn migrate up && yarn seed` ou 
 
 Para utilizar a documentação da API utilize a URL `http://localhost:3000/api-docs`
 
-Para o firebase funcionar, é necessário adicionar um arquivo `serviceAccountKey.json` em `API/src/config`
+O token para autenticação na API é o `18ae00d0-1594-4b13-bd70-4ca2af8f439d`
 
 ## Plugin
 

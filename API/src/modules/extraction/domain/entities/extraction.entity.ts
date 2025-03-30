@@ -8,7 +8,7 @@ export { Extraction };
  *      type: object
  *      properties:
  *        id:
- *          type: string
+ *          type: number
  *        device:
  *          type: string
  *        os:
@@ -20,7 +20,7 @@ export { Extraction };
  *        token:
  *          type: string
  *      example:
- *        id: '87ee7afa-dc1e-4835-b639-4a089f564d21'
+ *        id: 1
  *        device: 'iPhone'
  *        os: 'iOS'
  *        origin: 'https://www.handtalk.com'
@@ -32,7 +32,7 @@ export { Extraction };
  *        $ref: '#/components/schemas/Extraction'
  */
 class Extraction {
-  id?: string;
+  id?: number;
   device?: string;
   os?: string;
   origin?: string;

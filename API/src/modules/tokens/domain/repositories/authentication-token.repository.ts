@@ -29,7 +29,7 @@ class AuthTokenRepository extends Repository implements AuthTokenRepositoryInter
           token.limitTimeout = result.rows[0].limit_timeout;
 
           resolve(token);
-        }
+        },
       );
     });
   }
@@ -45,7 +45,7 @@ class AuthTokenRepository extends Repository implements AuthTokenRepositoryInter
           }
 
           resolve();
-        }
+        },
       );
     });
   }
@@ -61,7 +61,7 @@ class AuthTokenRepository extends Repository implements AuthTokenRepositoryInter
           }
 
           resolve();
-        }
+        },
       );
     });
   }
@@ -80,7 +80,7 @@ class AuthTokenRepository extends Repository implements AuthTokenRepositoryInter
           }
 
           resolve();
-        }
+        },
       );
     });
   }
